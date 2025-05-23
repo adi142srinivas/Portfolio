@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srinivas | Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6c63ff;
+            --secondary-color: #4d44db;
+            --text-dark: #333;
+            --text-light: #777;
+            --bg-light: #f9f9f9;
+            --bg-dark: #1a1a2e;
+            --card-bg: #fff;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        /* Dark Mode */
+        .dark-mode {
+            --text-dark: #f0f0f0;
+            --text-light: #b8b8b8;
+            --bg-light: #1a1a2e;
+            --bg-dark: #0f0f1a;
+            --card-bg: #16213e;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            transition: var(--transition);
+            line-height: 1.6;
+        }
+
+        /* Header & Navbar */
+        header {
+            background-color: var(--card-bg);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 2rem;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: var(--text-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 0 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-top: 5rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+
+        .hero-img {
+            flex: 1;
+            text-align: center;
+        }
+
+        .hero-img img {
+            max-width: 75%;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* About Section */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+        }
+
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .skills {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .skill {
+            background-color: var(--card-bg);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+        }
+
+        /* Achievements Section */
+        .achievements-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .achievement-tabs {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .achievement-tab {
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 600;
+        }
+
+        .achievement-tab.active, .achievement-tab:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .achievement-category {
+            margin-bottom: 4rem;
+        }
+
+        .achievement-category h3 {
+            color: var(--primary-color);
+            margin-bottom: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-size: 1.8rem;
+        }
+
+        .achievement-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .achievement-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .achievement-image-container {
+            position: relative;
+            height: 200px;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .achievement-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .achievement-card:hover .achievement-image {
+            transform: scale(1.05);
+        }
+
+        .achievement-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .achievement-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .achievement-icon {
+            font-size: 1.8rem;
+            color: var(--primary-color);
+        }
+
+        .achievement-content h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+
+        .achievement-content p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+
+        .achievement-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+        }
+
+        .achievement-date {
+            font-size: 0.9rem;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .achievement-verify {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            transition: var(--transition);
+        }
+
+        .achievement-verify:hover {
+            color: var(--secondary-color);
+        }
+
+        .issuer-logo {
+            height: 30px;
+            margin-bottom: 1rem;
+        }
+
+        /* Projects Section */
+        .projects {
+            background-color: var(--bg-dark);
+            color: white;
+        }
+
+        .projects .section-title {
+            color: white;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 2px solid var(--primary-color);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--primary-color);
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .project-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .project-info p {
+            color: var(--text-light);
+            margin-bottom: 1rem;
+        }
+
+        .project-links a {
+            color: var(--primary-color);
+            margin-right: 1rem;
+            text-decoration: none;
+        }
+
+        /* Contact Section */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: var(--bg-dark);
+            color: white;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-color);
+        }
+
+        /* Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+            .hero-img img {
+                max-width: 300px;
+            }
+            .about-content {
+                flex-direction: column;
+            }
+            .nav-links {
+                display: none;
+            }
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+            .achievement-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">Srinivas</div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#achievements">Achievements</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle">
+                <i class="fas fa-moon"></i>
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Hi, I'm <span style="color: var(--primary-color);">Srinivas</span></h1>
+            <p>A passionate developer with multiple certifications in AI, Full Stack Development, and Software Engineering. Committed to continuous learning and professional growth.</p>
+            <a href="#achievements" class="btn">View My Certifications</a>
+        </div>
+        <div class="hero-img">
+            <img src="C:\Users\srini\Desktop\postpolo\WhatsApp Image 2025-03-05 at 21.21.52_671935ce.jpg">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title">About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a full-stack developer with certifications from Microsoft, Infosys, Simplilearn, and Great Learning. My expertise spans AI, machine learning, software engineering, and web development.</p>
+                <p>When I'm not coding, I enjoy participating in tech communities and mentoring aspiring developers.</p>
+            </div>
+            <div class="skills">
+                <span class="skill">AI/ML</span>
+                <span class="skill">Full Stack</span>
+                <span class="skill">JavaScript</span>
+                <span class="skill">React</span>
+                <span class="skill">Node.js</span>
+                <span class="skill">Python</span>
+                <span class="skill">Git/GitHub</span>
+                <span class="skill">Agile</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements Section -->
+    <section id="achievements">
+        <h2 class="section-title">My Certifications</h2>
+        
+        <div class="achievements-container">
+            <div class="achievement-tabs">
+                <button class="achievement-tab active" data-category="all">All</button>
+                <button class="achievement-tab" data-category="ai">AI/ML</button>
+                <button class="achievement-tab" data-category="development">Development</button>
+                <button class="achievement-tab" data-category="internship">Internships</button>
+            </div>
+
+            <!-- AI/ML Certifications -->
+            <div class="achievement-category" data-category="ai">
+                <h3><i class="fas fa-robot"></i> Artificial Intelligence</h3>
+                <div class="achievement-grid">
+                    <!-- Freedom with AI Masterclass -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.34_bd84d5af.jpg" alt="Freedom with AI Masterclass" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Freedom with AI Masterclass</h4>
+                            <p>Completed intensive AI training covering fundamental concepts and practical applications.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">Sep 21, 2024</span>
+                                <a href="#" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Introduction to AI - Great Learning -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.41_17e5efb2.jpg" alt="Introduction to AI" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Introduction to Artificial Intelligence</h4>
+                            <p>Gained foundational knowledge in AI concepts and applications through Great Learning Academy.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">Oct 2023</span>
+                                <a href="https://verify.mygreatlearning.com/CPYXEHMG" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- AI & MI Internship -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.44_46a18fd2.jpg" alt="AI & MI Internship" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>AI & ML Internship</h4>
+                            <p>6-week intensive internship organized by Excell R Edtech in collaboration with APSCHE.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">Jul 20, 2024</span>
+                                <a href="#" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Intro to AI - Simplilearn -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.43_a58dc2e0.jpg" alt="Intro to AI" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Introduction to Artificial Intelligence</h4>
+                            <p>Completed AI fundamentals course from Simplilearn, covering key concepts and applications.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">Jan 30, 2024</span>
+                                <a href="#" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Development Certifications -->
+            <div class="achievement-category" data-category="development">
+                <h3><i class="fas fa-code"></i> Development</h3>
+                <div class="achievement-grid">
+                    <!-- Microsoft Learn: Git/GitHub -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.36_fc3888df.jpg" alt="Git/GitHub Certificate" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Zero To Hero: Git, GitHub & GitHub Copilot</h4>
+                            <p>Microsoft Learn Student Ambassador program covering version control and collaboration tools.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">2024</span>
+                                <a href="#" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- C Programming Basics -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.35_28c5c947.jpg" alt="C Programming Certificate" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>C Programming Basics</h4>
+                            <p>Kickstarted programming career with foundational C programming concepts from Simplilearn.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">Nov 1, 2024</span>
+                                <a href="#" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Sorting Algorithms -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.43_b0bde57b.jpg" alt="Sorting Algorithms Certificate" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Introduction to Sorting Algorithms</h4>
+                            <p>Mastered fundamental sorting algorithms and their implementations from Simplilearn.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">Feb 6, 2024</span>
+                                <a href="#" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Infosys Software Engineering -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.42_765554f7.jpg" alt="Software Engineering Certificate" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Software Engineering & Agile</h4>
+                            <p>Completed Infosys Springboard course covering software engineering principles and Agile methodologies.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">Jul 25, 2024</span>
+                                <a href="https://verifyanwingspan.com" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Internship Certifications -->
+            <div class="achievement-category" data-category="internship">
+                <h3><i class="fas fa-briefcase"></i> Internships</h3>
+                <div class="achievement-grid">
+                    <!-- Full Stack Internship -->
+                    <div class="achievement-card">
+                        <div class="achievement-image-container">
+                            <img src="WhatsApp Image 2025-03-26 at 18.28.42_141c34ad.jpg" alt="Full Stack Internship Certificate" class="achievement-image">
+                        </div>
+                        <div class="achievement-content">
+                            <h4>Full Stack Web Development</h4>
+                            <p>2-month project-based internship at Avaintern Educach, developing proficiency in full stack technologies.</p>
+                            <div class="achievement-footer">
+                                <span class="achievement-date">Jul 25, 2024</span>
+                                <a href="http://www.avaintern.com" class="achievement-verify">Verify <i class="fas fa-external-link-alt"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects" id="projects">
+        <h2 class="section-title">My Projects</h2>
+        <div class="filter-buttons">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="web">Web</button>
+            <button class="filter-btn" data-filter="mobile">Mobile</button>
+            <button class="filter-btn" data-filter="design">Design</button>
+        </div>
+        <div class="project-grid">
+            <div class="project-card" data-category="web">
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="project-img" alt="Project 1">
+                <div class="project-info">
+                    <h3>E-Commerce Website</h3>
+                    <p>A full-featured online store with cart and payment integration.</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="mobile">
+                <img src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="project-img" alt="Project 2">
+                <div class="project-info">
+                    <h3>Fitness App</h3>
+                    <p>Mobile application for tracking workouts and nutrition.</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card" data-category="design">
+                <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" class="project-img" alt="Project 3">
+                <div class="project-info">
+                    <h3>Portfolio Design</h3>
+                    <p>Modern UI/UX design for a creative portfolio.</p>
+                    <div class="project-links">
+                        <a href="#"><i class="fas fa-external-link-alt"></i> Live</a>
+                        <a href="#"><i class="fab fa-github"></i> Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="social-links">
+                       <a href="#"><i class="fab fa-linkedin"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p>&copy; 2024 Srinivas. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Dark/Light Mode Toggle
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            const icon = themeToggle.querySelector('i');
+            if (document.body.classList.contains('dark-mode')) {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        });
+
+        // Achievement Tab Filtering
+        const achievementTabs = document.querySelectorAll('.achievement-tab');
+        const achievementCategories = document.querySelectorAll('.achievement-category');
+
+        achievementTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs
+                achievementTabs.forEach(t => t.classList.remove('active'));
+                // Add active class to clicked tab
+                tab.classList.add('active');
+
+                const filter = tab.getAttribute('data-category');
+
+                achievementCategories.forEach(category => {
+                    if (filter === 'all' || category.getAttribute('data-category') === filter) {
+                        category.style.display = 'block';
+                    } else {
+                        category.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Project Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Smooth Scrolling for Navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Contact Form Submission
+        const contactForm = document.getElementById('contactForm');
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Message sent! (This is a demo)');
+            contactForm.reset();
+        });
+
+        // Animate achievement cards on scroll
+        const achievementCards = document.querySelectorAll('.achievement-card');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animation = `fadeInUp 0.6s ease forwards ${index * 0.1}s`;
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+
+        achievementCards.forEach(card => {
+            card.style.opacity = '0';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
